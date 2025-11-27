@@ -461,21 +461,24 @@ Namespace FortyFingers.Dnn.SkinObjects
 
 
 
+        '' Add to Body Block ---------------
+
+        Dim _bFilterAddToBody As Boolean = False
         ''' <summary>
-        ''' Legacy: replace with AddToBodyTop
+        ''' Filter adding content to the body (by default false)?
         ''' </summary>
-        ''' <value></value>
+        ''' <value>False</value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Property AddAfterBody() As String
-            Get
-                Return AddToBodyTop
-            End Get
-            Set(ByVal value As String)
-                AddToBodyTop = value
+        Public Property FilterAddToBody() As Boolean
+            Set(ByVal Value As Boolean)
+                _bFilterAddToBody = Value
             End Set
-        End Property
+            Get
+                Return _bFilterAddToBody
+            End Get
 
+        End Property
 
 
         Private _sAddToBodyTop As String
@@ -512,7 +515,20 @@ Namespace FortyFingers.Dnn.SkinObjects
         End Property
 
 
-
+        ''' <summary>
+        ''' Legacy: replaced with AddToBodyTop
+        ''' </summary>
+        ''' <value></value>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
+        Public Property AddAfterBody() As String
+            Get
+                Return AddToBodyTop
+            End Get
+            Set(ByVal value As String)
+                AddToBodyTop = value
+            End Set
+        End Property
 
 
 
@@ -1335,7 +1351,7 @@ Namespace FortyFingers.Dnn.SkinObjects
         End Property
 
         ''' <summary>
-        ''' retrun the current text direction
+        ''' return the current text direction
         ''' </summary>
         ''' <value></value>
         ''' <returns></returns>
@@ -1370,13 +1386,6 @@ Namespace FortyFingers.Dnn.SkinObjects
                 End If
             End If
 
-            If AddToBodyTop > String.Empty Then
-                ProcessAddToBody(AddToBodyTop, InjectPosition.Top)
-            End If
-
-            If AddToBodyBottom > String.Empty Then
-                ProcessAddToBody(AddToBodyBottom, InjectPosition.Bottom)
-            End If
 
 
             bConditions = CheckConditions()
@@ -1386,6 +1395,20 @@ Namespace FortyFingers.Dnn.SkinObjects
                 ProcessHtmlAttributes()
 
             End If
+
+            If FilterAddToBody = False Or bConditions Then
+
+
+                If AddToBodyTop <> String.Empty Then
+                    ProcessAddToBody(AddToBodyTop, InjectPosition.Top)
+                End If
+
+                If AddToBodyBottom <> String.Empty Then
+                    ProcessAddToBody(AddToBodyBottom, InjectPosition.Bottom)
+                End If
+
+            End If
+
 
         End Sub
 
