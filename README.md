@@ -2,7 +2,7 @@
 
 About 40FINGERS StyleHelper Skin Object for DNN
 
-The basic function of the 40FINGERS Style Helper Theme object is to allows you to manipulate the CSS, Javascript links and meta tags and content of you DNN page from the Theme.
+The basic function of the 40FINGERS Style Helper Theme object is to allows you to manipulate the CSS, Javascript links and meta tags and content of your DNN page from the Theme.
 
 The StyleHelper allows you to do this only when certain conditions are met.
 Some examples of the available conditions are: browser type / version, username, role, query string etc.
